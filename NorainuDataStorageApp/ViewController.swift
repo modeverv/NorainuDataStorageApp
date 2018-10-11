@@ -14,10 +14,21 @@ class ViewController: UIViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     // Do any additional setup after loading the view, typically from a nib.
+    let userDefaults = UserDefaults.standard
+    if let value = userDefaults.string(forKey: "text") {
+      textField.text = value
+    }
+
   }
   @IBAction func tapButtonAction(_ sender: Any) {
+    if let value = textField.text {
+      let userDefaults = UserDefaults.standard
+      userDefaults.set(value, forKey: "text")
+      userDefaults.synchronize()
+      //textField.text = nil
+    }
   }
-  
+
 
 }
 
